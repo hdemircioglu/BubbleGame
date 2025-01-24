@@ -9,15 +9,18 @@ public class FanController : MonoBehaviour
     private Transform target; // Reference to the object to point to
 
     [SerializeField]
-    private float maxForce = 10f; // Maximum force to apply
-    
-    [SerializeField]
-    private float minForce = 2f; // Minimum force to apply
-    
-    [SerializeField]
-    private float maxDistance = 10f; // Distance at which force becomes minimum
+    private float forceAmount = 10f; // Amount of force to apply
 
     private Rigidbody rb; // Reference to Rigidbody
+
+    [SerializeField]
+    private float maxDistance = 10f; // Maximum distance for force application
+
+    [SerializeField]
+    private float minForce = 5f; // Minimum force to apply
+
+    [SerializeField]
+    private float maxForce = 15f; // Maximum force to apply
 
     void Start()
     {
@@ -79,9 +82,9 @@ public class FanController : MonoBehaviour
         // Calculate distance to target
         float distance = Vector3.Distance(transform.position, target.position);
         
-        // Calculate force based on distance (closer = stronger force)
+        // Calculate force based on distance (further = stronger force)
         float normalizedDistance = Mathf.Clamp01(distance / maxDistance);
-        float currentForce = Mathf.Lerp(maxForce, minForce, normalizedDistance);
+        float currentForce = Mathf.Lerp(minForce, maxForce, normalizedDistance); // Swapped maxForce and minForce
 
         // Apply force in the object's forward direction (toward the target)
         Vector3 forceDirection = transform.forward;
