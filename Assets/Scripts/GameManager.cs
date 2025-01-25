@@ -6,20 +6,23 @@ using UnityEngine;
 
 public class GameManager : MonoBehaviour
 {
-    [SerializeField] GameObject WinScreen;
-    [SerializeField] GameObject FailScreen;
     [SerializeField] private float screenDelay = 1.5f;
     [SerializeField] private int maxBubbleCount;
     [SerializeField] Transform bubbleSpawnPoint;
     [SerializeField] GameObject bubblePrefab;
     [SerializeField] CinemachineVirtualCamera virtualCamera;
     [Header("UI")]
+    [SerializeField] GameObject WinScreen;
+    [SerializeField] GameObject FailScreen;
     [SerializeField] TextMeshProUGUI bubleCounterText;
     [SerializeField] TextMeshProUGUI timerText;
+    [Header("Win UI")]
+    [SerializeField] TextMeshProUGUI finalText;
 
     private int savedBubbleCount = 0;
     private FanController fan;
     private float gameTime;
+    private float finalTime;
 
     public GameState currentState;
 
@@ -35,7 +38,9 @@ public class GameManager : MonoBehaviour
             return;
         }
         Instance = this;
-        DontDestroyOnLoad(gameObject); // Keep this object across scenes
+
+        bubleCounterText.text = savedBubbleCount + "/" + maxBubbleCount;
+        //DontDestroyOnLoad(gameObject); // Keep this object across scenes
     }
 
 
@@ -64,7 +69,10 @@ public class GameManager : MonoBehaviour
         Debug.Log(bubbletxt);
         if (savedBubbleCount >= maxBubbleCount)
         {
+            finalTime = 0f + gameTime;
             ChangeState(GameState.Win);
+            finalText.text = FormatTime(finalTime);
+
         }
         if (currentState == GameState.GameOn) StartCoroutine(DelayedSpawnBubble());
     }
