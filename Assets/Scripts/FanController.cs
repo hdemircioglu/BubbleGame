@@ -10,6 +10,7 @@ public class FanController : MonoBehaviour
     [SerializeField] private float fanOffsetRotation;
     [SerializeField] private Transform fanMeshTransform;
     [SerializeField] private ParticleSystem windParticles;
+    [SerializeField] private float fanRadius;
 
     private GameManager gameManager;
 
@@ -60,13 +61,73 @@ public class FanController : MonoBehaviour
     {
         Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
         Plane xyPlane = new Plane(Vector3.forward, Vector3.zero);
-        Vector3 worldPosition = Vector3.zero;
+        Vector3 targetPosition = transform.position;
 
         if (xyPlane.Raycast(ray, out float enter))
         {
-            worldPosition = ray.GetPoint(enter);
+            targetPosition = ray.GetPoint(enter);
         }
-        return worldPosition;
+
+        // Check for obstacles at mouse position using a very small radius
+        Collider[] hitColliders = Physics.OverlapSphere(targetPosition, 0.1f, LayerMask.GetMask("Obstacle"));
+        
+        foreach (Collider collider in hitColliders)
+        {
+            Bounds bounds = collider.bounds;
+            float offset = fanRadius;
+
+            if (collider.CompareTag("BottomObstacle"))
+            {
+                // Snap to top border
+                targetPosition.y = bounds.max.y + offset;
+                
+                // Clamp to side borders
+                targetPosition.x = Mathf.Clamp(targetPosition.x, 
+                    bounds.min.x + offset, 
+                    bounds.max.x - offset);
+            }
+            else if (collider.CompareTag("TopObstacle"))
+            {
+                // Snap to bottom border
+                targetPosition.y = bounds.min.y - offset;
+                
+                // Clamp to side borders
+                targetPosition.x = Mathf.Clamp(targetPosition.x, 
+                    bounds.min.x + offset, 
+                    bounds.max.x - offset);
+            }
+            else if (collider.CompareTag("VerticalObstacle"))
+            {
+                // Calculate distances to all borders
+                float distanceToLeft = Mathf.Abs(targetPosition.x - bounds.min.x);
+                float distanceToRight = Mathf.Abs(targetPosition.x - bounds.max.x);
+                float distanceToTop = Mathf.Abs(targetPosition.y - bounds.max.y);
+                float distanceToBottom = Mathf.Abs(targetPosition.y - bounds.min.y);
+
+                // Find the minimum distance
+                float minDistance = Mathf.Min(distanceToLeft, distanceToRight, distanceToTop, distanceToBottom);
+
+                // Snap to the closest border
+                if (minDistance == distanceToLeft)
+                {
+                    targetPosition.x = bounds.min.x - offset;
+                }
+                else if (minDistance == distanceToRight)
+                {
+                    targetPosition.x = bounds.max.x + offset;
+                }
+                else if (minDistance == distanceToTop)
+                {
+                    targetPosition.y = bounds.max.y + offset;
+                }
+                else // bottom is closest
+                {
+                    targetPosition.y = bounds.min.y - offset;
+                }
+            }
+        }
+
+        return targetPosition;
     }
 
     private void AddFanForce()
@@ -81,5 +142,11 @@ public class FanController : MonoBehaviour
         // Apply force in the object's forward direction (toward the target)
         Vector3 forceDirection = transform.forward;
         target.AddForce(forceDirection * currentForce);
+    }
+
+    private void OnDrawGizmos()
+    {
+        Gizmos.color = Color.yellow;
+        Gizmos.DrawWireSphere(transform.position, fanRadius);
     }
 }
