@@ -43,14 +43,14 @@ public class Bubble : MonoBehaviour
     {
         if ((obstacleLayer & (1 << collision.gameObject.layer)) != 0)
         {
+            GameManager.Instance.FailBubble();
             Instantiate(PopPartcileObject, transform.position, Quaternion.identity);
-            GameManager.Instance.ChangeState(GameState.Fail);
             Destroy(gameObject);
         }
 
         if ((winLayer & (1 << collision.gameObject.layer)) != 0)
         {
-            GameManager.Instance.ChangeState(GameState.Win);
+            GameManager.Instance.WinBubble();
             Instantiate(PopWinPartcileObject, transform.position, Quaternion.identity);
             Destroy(gameObject);
         }

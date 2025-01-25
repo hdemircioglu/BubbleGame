@@ -1,12 +1,19 @@
+using Cinemachine;
 using System.Collections;
 using UnityEngine;
 
 public class GameManager : MonoBehaviour
 {
-
     [SerializeField] GameObject WinScreen;
     [SerializeField] GameObject FailScreen;
     [SerializeField] private float screenDelay = 1.5f;
+    [SerializeField] private int maxBubbleCount;
+    [SerializeField] Transform bubbleSpawnPoint;
+    [SerializeField] GameObject bubblePrefab;
+    [SerializeField] CinemachineVirtualCamera virtualCamera;
+
+    private int savedBubbleCount = 0;
+    private FanController fan;
 
     public GameState currentState;
 
@@ -15,6 +22,7 @@ public class GameManager : MonoBehaviour
 
     private void Awake()
     {
+        fan = FindAnyObjectByType<FanController>();
         if (Instance != null && Instance != this)
         {
             Destroy(gameObject);
@@ -24,12 +32,41 @@ public class GameManager : MonoBehaviour
         DontDestroyOnLoad(gameObject); // Keep this object across scenes
     }
 
-    private void OnMouseDown()
+
+    private void Update()
     {
-        if (currentState == GameState.GameStart)
+        if (Input.GetMouseButton(0))
         {
-            currentState = GameState.GameOn;
+            if (currentState == GameState.GameStart)
+            {
+                currentState = GameState.GameOn;
+                SpawnBubble();
+            }
         }
+    }
+
+    public void WinBubble()
+    {
+        savedBubbleCount += 1;
+        Debug.Log(savedBubbleCount + "/" + maxBubbleCount);
+        if (savedBubbleCount >= maxBubbleCount)
+        {
+            ChangeState(GameState.Win);
+        }
+        if (currentState == GameState.GameOn) SpawnBubble();
+    }
+
+    public void FailBubble()
+    {
+        Debug.Log("bubble faild");
+        SpawnBubble();
+    }
+
+    private void SpawnBubble()
+    {
+        var bubble = Instantiate(bubblePrefab, bubbleSpawnPoint.position, Quaternion.identity);
+        fan.SetTarget(bubble);
+        virtualCamera.Follow = bubble.transform;
     }
 
     public void ChangeState(GameState newState)
@@ -72,7 +109,6 @@ public class GameManager : MonoBehaviour
             obj.SetActive(true);
         }
     }
-
 }
 
 public enum GameState

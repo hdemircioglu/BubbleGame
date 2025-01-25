@@ -2,11 +2,11 @@ using UnityEngine;
 
 public class FanController : MonoBehaviour
 {
-    [SerializeField]private Bubble target; // Reference to the object to point to
-    [SerializeField]private float forceAmount = 10f; // Amount of force to apply
-    [SerializeField]private float maxDistance = 10f; // Maximum distance for force application
-    [SerializeField]private float minForce = 5f; // Minimum force to apply
-    [SerializeField]private float maxForce = 15f; // Maximum force to apply
+    [SerializeField] private Bubble target; // Reference to the object to point to
+    [SerializeField] private float forceAmount = 10f; // Amount of force to apply
+    [SerializeField] private float maxDistance = 10f; // Maximum distance for force application
+    [SerializeField] private float minForce = 5f; // Minimum force to apply
+    [SerializeField] private float maxForce = 15f; // Maximum force to apply
 
     private GameManager gameManager;
 
@@ -15,6 +15,10 @@ public class FanController : MonoBehaviour
         gameManager = GameManager.Instance;
     }
 
+    public void SetTarget(GameObject newTarget)
+    {
+        target = newTarget.GetComponent<Bubble>();
+    }
 
     private void RotateTowardsTarget()
     {
@@ -25,7 +29,7 @@ public class FanController : MonoBehaviour
     private void FixedUpdate()
     {
         if (gameManager.currentState == GameState.GameOn)
-        { 
+        {
             transform.position = GetMouseWorldPosition();
             RotateTowardsTarget();
 
@@ -37,7 +41,7 @@ public class FanController : MonoBehaviour
 
     private Vector3 GetMouseWorldPosition()
     {
-        Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition); 
+        Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
         Plane xyPlane = new Plane(Vector3.forward, Vector3.zero);
         Vector3 worldPosition = Vector3.zero;
 
