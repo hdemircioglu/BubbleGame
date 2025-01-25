@@ -309,7 +309,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Path: {fileID: 2036114948}
-  m_PathPosition: 0
+  m_PathPosition: 3.955537
   m_PositionUnits: 0
   m_PathOffset: {x: 0, y: 0, z: 0}
   m_XDamping: 0
@@ -473,7 +473,7 @@ Transform:
   m_GameObject: {fileID: 120285981}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0.7356, z: 0}
+  m_LocalPosition: {x: 0, y: 0.91, z: 0}
   m_LocalScale: {x: 1, y: 3.9756, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -612,7 +612,7 @@ Transform:
   m_GameObject: {fileID: 178101663}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -4.17, y: 5.4259, z: 0}
+  m_LocalPosition: {x: -4.17, y: 5.89, z: 0}
   m_LocalScale: {x: 1, y: 5.525748, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -778,7 +778,7 @@ Transform:
   m_GameObject: {fileID: 330585543}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 16.200619, y: 0.8894005, z: -31.12}
+  m_LocalPosition: {x: -9.204802, y: 1.4889303, z: -31.12}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -1495,7 +1495,7 @@ MonoBehaviour:
   WinScreen: {fileID: 344197774583830266}
   FailScreen: {fileID: 3557348859470081511}
   screenDelay: 0.9
-  maxBubbleCount: 0
+  maxBubbleCount: 3
   bubbleSpawnPoint: {fileID: 562122830}
   bubblePrefab: {fileID: 3382831018553234175, guid: 982b1a568f317e14582bb9b786d2c45f,
     type: 3}
