@@ -3,7 +3,42 @@ guid: f256ba3c6dfae4f4585758bef85eabf5
 ModelImporter:
   serializedVersion: 22200
   internalIDToNameTable: []
-  externalObjects: {}
+  externalObjects:
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: hook
+    second: {fileID: 2100000, guid: 0222e162bb51bdc45a6110c4eaf82120, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: line
+    second: {fileID: 2100000, guid: 46a9050323506b841bfdcfe5766827c6, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: pants
+    second: {fileID: 2100000, guid: 5f20470ee6a804046a9cd6a5c6fadeac, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: pin
+    second: {fileID: 2100000, guid: 205b7523c376a4b4abe92f402e67c61c, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: pole
+    second: {fileID: 2100000, guid: f45ce38f32b7c854aa1001cbc4de67c8, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: skirt
+    second: {fileID: 2100000, guid: e73ea0c044a8fdd4e8bf517bd68bcf3d, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: t-shirt
+    second: {fileID: 2100000, guid: 48f91263062787c4a8671e433fef64ea, type: 2}
   materials:
     materialImportMode: 2
     materialName: 0

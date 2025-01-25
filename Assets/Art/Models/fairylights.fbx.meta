@@ -3,7 +3,17 @@ guid: f0a791319f4c1dd49b51122208122c33
 ModelImporter:
   serializedVersion: 22200
   internalIDToNameTable: []
-  externalObjects: {}
+  externalObjects:
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: fairylights
+    second: {fileID: 2100000, guid: 1488db571155e7842bdaf6fd50f79e98, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: rope
+    second: {fileID: 2100000, guid: cae037273ddd7a14595f71c39e8d1190, type: 2}
   materials:
     materialImportMode: 2
     materialName: 0

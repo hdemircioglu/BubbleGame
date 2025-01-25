@@ -3,7 +3,17 @@ guid: ec6abb9d7744d694a87d7eb3a2d310dd
 ModelImporter:
   serializedVersion: 22200
   internalIDToNameTable: []
-  externalObjects: {}
+  externalObjects:
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: fanBlades
+    second: {fileID: 2100000, guid: eb1444fa12d9fb644ba09077f9e67e7d, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: fanBody
+    second: {fileID: 2100000, guid: e971bb68f1c4ef64f9a076b7e2cc3a86, type: 2}
   materials:
     materialImportMode: 2
     materialName: 0
