@@ -1,13 +1,11 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.AI;
-using static UnityEngine.GraphicsBuffer;
 
 public class Bubble : MonoBehaviour
 {
     [SerializeField] private LayerMask obstacleLayer;
+    [SerializeField] private LayerMask winLayer;
     [SerializeField] private GameObject PopPartcileObject;
+    [SerializeField] private GameObject PopWinPartcileObject;
 
     private Rigidbody rb; // Reference to Rigidbody
     private GameManager gameManager;
@@ -36,7 +34,7 @@ public class Bubble : MonoBehaviour
         }
     }
 
-    public void AddForce(Vector3 force) 
+    public void AddForce(Vector3 force)
     {
         rb.AddForce(force, ForceMode.Force);
     }
@@ -47,6 +45,13 @@ public class Bubble : MonoBehaviour
         {
             Instantiate(PopPartcileObject, transform.position, Quaternion.identity);
             GameManager.Instance.ChangeState(GameState.Fail);
+            Destroy(gameObject);
+        }
+
+        if ((winLayer & (1 << collision.gameObject.layer)) != 0)
+        {
+            GameManager.Instance.ChangeState(GameState.Win);
+            Instantiate(PopWinPartcileObject, transform.position, Quaternion.identity);
             Destroy(gameObject);
         }
     }

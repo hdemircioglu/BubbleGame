@@ -1,9 +1,12 @@
 using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class GameManager : MonoBehaviour
 {
+
+    [SerializeField] GameObject WinScreen;
+    [SerializeField] GameObject FailScreen;
+    [SerializeField] private float screenDelay = 1.5f;
 
     public GameState currentState;
 
@@ -17,7 +20,7 @@ public class GameManager : MonoBehaviour
             Destroy(gameObject);
             return;
         }
-        Instance = this; 
+        Instance = this;
         DontDestroyOnLoad(gameObject); // Keep this object across scenes
     }
 
@@ -46,16 +49,27 @@ public class GameManager : MonoBehaviour
 
             case GameState.GamePaused:
                 Debug.Log("Game Paused.");
-                Time.timeScale = 0; 
+                Time.timeScale = 0;
                 break;
 
             case GameState.Win:
                 Debug.Log("You Win!");
+                StartCoroutine(ActivateObjectWithDelay(WinScreen, screenDelay));
                 break;
 
             case GameState.Fail:
                 Debug.Log("You Fail!");
+                StartCoroutine(ActivateObjectWithDelay(FailScreen, screenDelay));
                 break;
+        }
+    }
+
+    private IEnumerator ActivateObjectWithDelay(GameObject obj, float delay)
+    {
+        yield return new WaitForSeconds(delay);
+        if (obj != null)
+        {
+            obj.SetActive(true);
         }
     }
 

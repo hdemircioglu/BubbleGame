@@ -9,11 +9,11 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 136313694073459449}
+  - component: {fileID: 2697770183232142116}
   - component: {fileID: 2188486705364051470}
   - component: {fileID: 2297084194733161016}
   - component: {fileID: 8073457139579397543}
   - component: {fileID: 5300624226832371861}
-  - component: {fileID: 2697770183232142116}
   m_Layer: 0
   m_Name: Bubble
   m_TagString: Untagged
@@ -36,6 +36,28 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &2697770183232142116
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3382831018553234175}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 83ba28c12c737054ea5026fefa45ae84, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  obstacleLayer:
+    serializedVersion: 2
+    m_Bits: 64
+  winLayer:
+    serializedVersion: 2
+    m_Bits: 128
+  PopPartcileObject: {fileID: 8423227056803777527, guid: 8ce0fd3396f28da4f86568a43e194b1a,
+    type: 3}
+  PopWinPartcileObject: {fileID: 8423227056803777527, guid: b9a18faa3c1292b4ab7b6ef32c9fcf54,
+    type: 3}
 --- !u!33 &2188486705364051470
 MeshFilter:
   m_ObjectHideFlags: 0
@@ -134,20 +156,3 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 72
   m_CollisionDetection: 0
---- !u!114 &2697770183232142116
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3382831018553234175}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 83ba28c12c737054ea5026fefa45ae84, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  obstacleLayer:
-    serializedVersion: 2
-    m_Bits: 64
-  PopPartcileObject: {fileID: 8423227056803777527, guid: 8ce0fd3396f28da4f86568a43e194b1a,
-    type: 3}
