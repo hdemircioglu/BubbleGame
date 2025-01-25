@@ -7,6 +7,9 @@ public class FanController : MonoBehaviour
     [SerializeField] private float maxDistance = 10f; // Maximum distance for force application
     [SerializeField] private float minForce = 5f; // Minimum force to apply
     [SerializeField] private float maxForce = 15f; // Maximum force to apply
+    [SerializeField] private float fanOffsetRotation;
+    [SerializeField] private Transform fanMeshTransform;
+    [SerializeField] private ParticleSystem windParticles;
 
     private GameManager gameManager;
 
@@ -23,7 +26,11 @@ public class FanController : MonoBehaviour
     private void RotateTowardsTarget()
     {
         if (target == null) return;
-        transform.LookAt(target.transform);
+        transform.LookAt(target.transform, Vector3.up);
+        if (transform.position.x > target.transform.position.x)
+            fanMeshTransform.localRotation = Quaternion.Euler(0, -fanOffsetRotation, 0);
+        else
+            fanMeshTransform.localRotation = Quaternion.Euler(0, fanOffsetRotation, 0);
     }
 
     private void FixedUpdate()
@@ -33,8 +40,19 @@ public class FanController : MonoBehaviour
             transform.position = GetMouseWorldPosition();
             RotateTowardsTarget();
 
-            if (Input.GetMouseButton(0) && target != null) // left mouse button
+            if (Input.GetMouseButton(0)) // left mouse button
+            {
                 AddFanForce();
+                windParticles.gameObject.SetActive(true);
+                //var emissionModule = windParticles.emission;
+                //emissionModule.enabled = true;
+            }
+            else
+            {
+                windParticles.gameObject.SetActive(false);
+                //var emissionModule = windParticles.emission;
+                //emissionModule.enabled = false;
+            }
         }
     }
 
