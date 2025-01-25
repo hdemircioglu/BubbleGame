@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: 482ce7f57687ca24ba01769bc3e33baf
+guid: e2100f3699f9c3b4ca88c16bbd3e34d9
 ModelImporter:
   serializedVersion: 22200
   internalIDToNameTable: []
@@ -7,13 +7,8 @@ ModelImporter:
   - first:
       type: UnityEngine:Material
       assembly: UnityEngine.CoreModule
-      name: branch
-    second: {fileID: 2100000, guid: 818fe9768a4e8764caa083736b0a7a50, type: 2}
-  - first:
-      type: UnityEngine:Material
-      assembly: UnityEngine.CoreModule
-      name: leaf
-    second: {fileID: 2100000, guid: bdca4457db39880468c8a112c1ff32ca, type: 2}
+      name: bush
+    second: {fileID: 2100000, guid: 43b7ed0a907203b4bba351a0abf7968f, type: 2}
   materials:
     materialImportMode: 2
     materialName: 0
