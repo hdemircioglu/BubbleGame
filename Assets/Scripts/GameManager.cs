@@ -53,11 +53,11 @@ public class GameManager : MonoBehaviour
 
         if (Input.GetMouseButton(0))
         {
-            if (currentState == GameState.GameStart)
-            {
-                currentState = GameState.GameOn;
-                SpawnBubble();
-            }
+            //if (currentState == GameState.GameStart)
+            //{
+            //    currentState = GameState.GameOn;
+            //    SpawnBubble();
+            //}
         }
     }
 
@@ -82,6 +82,12 @@ public class GameManager : MonoBehaviour
         Debug.Log("bubble faild");
         StartCoroutine(DelayedSpawnBubble());
 
+    }
+
+    public void StartGame()
+    {
+        currentState = GameState.GameOn;
+        SpawnBubble();
     }
 
 
