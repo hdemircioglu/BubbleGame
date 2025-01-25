@@ -69,7 +69,7 @@ public class FanController : MonoBehaviour
         }
 
         // Check for obstacles at mouse position using a very small radius
-        Collider[] hitColliders = Physics.OverlapSphere(targetPosition, 0.1f, LayerMask.GetMask("Obstacle"));
+        Collider[] hitColliders = Physics.OverlapSphere(targetPosition, 0.1f, LayerMask.GetMask("Obstacle","Bubble"));
         
         foreach (Collider collider in hitColliders)
         {
@@ -96,7 +96,7 @@ public class FanController : MonoBehaviour
                     bounds.min.x + offset, 
                     bounds.max.x - offset);
             }
-            else if (collider.CompareTag("VerticalObstacle"))
+            else //if (collider.CompareTag("VerticalObstacle"))
             {
                 // Calculate distances to all borders
                 float distanceToLeft = Mathf.Abs(targetPosition.x - bounds.min.x);
