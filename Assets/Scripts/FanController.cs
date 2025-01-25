@@ -40,18 +40,17 @@ public class FanController : MonoBehaviour
             transform.position = GetMouseWorldPosition();
             RotateTowardsTarget();
 
-            if (Input.GetMouseButton(0)) // left mouse button
+            if (target != null)
             {
-                AddFanForce();
-                windParticles.gameObject.SetActive(true);
-                //var emissionModule = windParticles.emission;
-                //emissionModule.enabled = true;
-            }
-            else
-            {
-                windParticles.gameObject.SetActive(false);
-                //var emissionModule = windParticles.emission;
-                //emissionModule.enabled = false;
+                if (Input.GetMouseButton(0)) // left mouse button
+                {
+                    AddFanForce();
+                    windParticles.gameObject.SetActive(true);
+                }
+                else
+                {
+                    windParticles.gameObject.SetActive(false);
+                }
             }
         }
     }

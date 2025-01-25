@@ -66,15 +66,22 @@ public class GameManager : MonoBehaviour
         {
             ChangeState(GameState.Win);
         }
-        if (currentState == GameState.GameOn) SpawnBubble();
+        if (currentState == GameState.GameOn) StartCoroutine(DelayedSpawnBubble());
     }
 
     public void FailBubble()
     {
         Debug.Log("bubble faild");
-        SpawnBubble();
+        StartCoroutine(DelayedSpawnBubble());
+
     }
 
+
+    private IEnumerator DelayedSpawnBubble()
+    {
+        yield return new WaitForSeconds(0.7f);
+        SpawnBubble();
+    }
     private void SpawnBubble()
     {
         var bubble = Instantiate(bubblePrefab, bubbleSpawnPoint.position, Quaternion.identity);
