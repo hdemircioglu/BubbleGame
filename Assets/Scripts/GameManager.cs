@@ -1,6 +1,8 @@
 using Cinemachine;
 using System.Collections;
+using TMPro;
 using UnityEngine;
+
 
 public class GameManager : MonoBehaviour
 {
@@ -11,9 +13,13 @@ public class GameManager : MonoBehaviour
     [SerializeField] Transform bubbleSpawnPoint;
     [SerializeField] GameObject bubblePrefab;
     [SerializeField] CinemachineVirtualCamera virtualCamera;
+    [Header("UI")]
+    [SerializeField] TextMeshProUGUI bubleCounterText;
+    [SerializeField] TextMeshProUGUI timerText;
 
     private int savedBubbleCount = 0;
     private FanController fan;
+    private float gameTime;
 
     public GameState currentState;
 
@@ -35,6 +41,11 @@ public class GameManager : MonoBehaviour
 
     private void Update()
     {
+        if (currentState == GameState.GameOn)
+            gameTime += Time.deltaTime;
+
+        timerText.text = FormatTime(gameTime);
+
         if (Input.GetMouseButton(0))
         {
             if (currentState == GameState.GameStart)
@@ -48,7 +59,9 @@ public class GameManager : MonoBehaviour
     public void WinBubble()
     {
         savedBubbleCount += 1;
-        Debug.Log(savedBubbleCount + "/" + maxBubbleCount);
+        string bubbletxt = savedBubbleCount + "/" + maxBubbleCount;
+        bubleCounterText.text = bubbletxt;
+        Debug.Log(bubbletxt);
         if (savedBubbleCount >= maxBubbleCount)
         {
             ChangeState(GameState.Win);
@@ -109,7 +122,16 @@ public class GameManager : MonoBehaviour
             obj.SetActive(true);
         }
     }
+
+    private string FormatTime(float seconds)
+    {
+        int minutes = Mathf.FloorToInt(seconds / 60);
+        int remainingSeconds = Mathf.FloorToInt(seconds % 60);
+        return string.Format("{0}:{1:D2}", minutes, remainingSeconds);
+    }
 }
+
+
 
 public enum GameState
 {
