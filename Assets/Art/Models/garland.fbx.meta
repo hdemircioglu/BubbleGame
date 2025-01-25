@@ -7,13 +7,28 @@ ModelImporter:
   - first:
       type: UnityEngine:Material
       assembly: UnityEngine.CoreModule
+      name: blueFlag
+    second: {fileID: 2100000, guid: 864a9bd1ea5838e4badfb73bbfcc4666, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
       name: fairylights
     second: {fileID: 2100000, guid: 1488db571155e7842bdaf6fd50f79e98, type: 2}
   - first:
       type: UnityEngine:Material
       assembly: UnityEngine.CoreModule
+      name: redFlag
+    second: {fileID: 2100000, guid: 5b63c4dec942d50448ac3a3c1aa550b5, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
       name: rope
     second: {fileID: 2100000, guid: cae037273ddd7a14595f71c39e8d1190, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: yellowFlag
+    second: {fileID: 2100000, guid: c8e7392ee1c7f6744a081da0f964ff3c, type: 2}
   materials:
     materialImportMode: 2
     materialName: 0
