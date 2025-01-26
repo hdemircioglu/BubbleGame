@@ -111,6 +111,7 @@ public class GameManager : MonoBehaviour
         {
             case GameState.GameStart:
                 Debug.Log("Game Starting...");
+                Time.timeScale = 1;
                 break;
 
             case GameState.GameOn:
@@ -126,6 +127,7 @@ public class GameManager : MonoBehaviour
             case GameState.Win:
                 Debug.Log("You Win!");
                 StartCoroutine(ActivateObjectWithDelay(WinScreen, screenDelay));
+                
                 break;
 
             case GameState.Fail:
@@ -138,6 +140,7 @@ public class GameManager : MonoBehaviour
     private IEnumerator ActivateObjectWithDelay(GameObject obj, float delay)
     {
         yield return new WaitForSeconds(delay);
+        Time.timeScale = 0;
         if (obj != null)
         {
             obj.SetActive(true);
