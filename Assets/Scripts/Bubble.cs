@@ -10,6 +10,7 @@ public class Bubble : MonoBehaviour
     private Rigidbody rb; // Reference to Rigidbody
     private GameManager gameManager;
 
+    private bool collided = false;
     private void Start()
     {
         gameManager = GameManager.Instance;
@@ -32,6 +33,7 @@ public class Bubble : MonoBehaviour
         {
 
         }
+        collided = false;
     }
 
     public void AddForce(Vector3 force)
@@ -41,18 +43,23 @@ public class Bubble : MonoBehaviour
 
     private void OnCollisionEnter(Collision collision)
     {
-        if ((obstacleLayer & (1 << collision.gameObject.layer)) != 0)
+        if (!collided)
         {
-            GameManager.Instance.FailBubble();
-            Instantiate(PopPartcileObject, transform.position, Quaternion.identity);
-            Destroy(gameObject);
-        }
+            collided = true;
+            if ((obstacleLayer & (1 << collision.gameObject.layer)) != 0)
+            {
+                GameManager.Instance.FailBubble();
+                Instantiate(PopPartcileObject, transform.position, Quaternion.identity);
+                Destroy(gameObject);
+            }
 
-        if ((winLayer & (1 << collision.gameObject.layer)) != 0)
-        {
-            GameManager.Instance.WinBubble();
-            Instantiate(PopWinPartcileObject, transform.position, Quaternion.identity);
-            Destroy(gameObject);
+            if ((winLayer & (1 << collision.gameObject.layer)) != 0)
+            {
+                GameManager.Instance.WinBubble();
+                Instantiate(PopWinPartcileObject, transform.position, Quaternion.identity);
+                Destroy(gameObject);
+            }
+
         }
     }
 
