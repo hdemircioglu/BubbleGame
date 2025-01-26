@@ -86,7 +86,8 @@ public class GameManager : MonoBehaviour
 
     public void StartGame()
     {
-        currentState = GameState.GameOn;
+        // currentState = GameState.GameOn;
+        ChangeState(GameState.GameOn);
         SpawnBubble();
     }
 
