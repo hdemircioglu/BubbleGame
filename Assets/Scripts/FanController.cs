@@ -68,6 +68,7 @@ public class FanController : MonoBehaviour
             targetPosition = ray.GetPoint(enter);
         }
 
+        /*
         // Check for obstacles at mouse position using a very small radius
         Collider[] hitColliders = Physics.OverlapSphere(targetPosition, 0.1f, LayerMask.GetMask("Obstacle","Bubble"));
         
@@ -125,7 +126,7 @@ public class FanController : MonoBehaviour
                     targetPosition.y = bounds.min.y - offset;
                 }
             }
-        }
+        } */
 
         return targetPosition;
     }
